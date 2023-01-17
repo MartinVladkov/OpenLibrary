@@ -1,4 +1,5 @@
 ﻿using OpenLibrary.Services;
+using OpenLibrary.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -17,11 +18,14 @@ namespace OpenLibrary
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            MainWindow = new MainWindow();
-            MainWindow.Show();
-
             var libraryService = new LibraryService();
-            var result = libraryService.GetApiResponse();
+
+            MainWindow = new MainWindow()
+            {
+                DataContext = new MainViewModel(libraryService)
+            };
+
+            MainWindow.Show();
 
             base.OnStartup(e);
         }

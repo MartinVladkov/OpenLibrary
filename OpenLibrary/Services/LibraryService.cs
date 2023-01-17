@@ -12,14 +12,12 @@ namespace OpenLibrary.Services
 {
     public class LibraryService : ILibraryService
     {
-        public async Task<string> GetApiResponse()
+        public async Task<BooksList> GetApiResponse()
         {
             var connectionString = "http://openlibrary.org/search.json?title=the+lord+of+the+rings&page=1";
             var client = new HttpClient();
            
-            string response = await client.GetStringAsync(connectionString);
-
-            var b = 0;
+            string response = client.GetStringAsync(connectionString).Result;
 
             //Console.WriteLine(response);
             //var doc = JsonDocument.Parse(response);
@@ -28,8 +26,7 @@ namespace OpenLibrary.Services
             //BooksList books = JsonConvert.DeserializeObject<BooksList>(response);
             BooksList books = JsonSerializer.Deserialize<BooksList>(response);
 
-            var a = 0;
-            return response;
+            return books;
         }
     }
 }

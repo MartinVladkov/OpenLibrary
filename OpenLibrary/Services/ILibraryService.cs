@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenLibrary.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace OpenLibrary.Services
 {
     public interface ILibraryService
     {
-        Task<string> GetApiResponse();
+        Task<BooksList> GetApiResponse();
     }
 }

@@ -18,55 +18,16 @@ namespace OpenLibrary.Models
             }
         }
 
-        //private string Isbn;
-
-        //public string isbn
-        //{
-        //    get { return Isbn; }
-        //    set { Isbn = value; OnPropertyChanged("Isbn"); }
-        //}
+        public List<string> isbn;
 
         public string title { get; set; }
 
-        //private string Title { get; set; }
+        public List<string> author_name { get; set; }
 
-        //public string title
-        //{
-        //    get { return Title; }
-        //    set { Title = value; OnPropertyChanged("title"); }
-        //}
+        public int number_of_pages_median { get; set; }
 
-        //private string AuthorName { get; set; }
+        public int first_publish_year { get; set; }
 
-        //public string author_name
-        //{
-        //    get { return AuthorName; }
-        //    set { AuthorName = value; OnPropertyChanged("author_name"); }
-        //}
-
-        //private int pageCount { get; set; }
-
-        //public int PageCount
-        //{
-        //    get { return pageCount; }
-        //    set { pageCount = value; OnPropertyChanged("PageCount"); }
-        //}
-
-        //private DateTime FirstPublishYear { get; set; }
-
-        //public DateTime first_publish_year
-        //{
-        //    get { return FirstPublishYear; }
-        //    set { FirstPublishYear = value; OnPropertyChanged("first_publish_year"); }
-        //}
-
-        //private string bookCover { get; set; }
-
-        //public string BookCover
-        //{
-        //    get { return bookCover; }
-        //    set { bookCover = value; OnPropertyChanged("BookCover"); }
-        //}
-
+        public int cover_i { get; set; } //find cover here: https://covers.openlibrary.org/b/$key/$value-$size.jpg exmpl: https://covers.openlibrary.org/b/isbn/0385472579-S.jpg
     }
 }
