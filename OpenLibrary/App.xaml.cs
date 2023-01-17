@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenLibrary.Services;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,10 +14,14 @@ namespace OpenLibrary
     /// </summary>
     public partial class App : Application
     {
+
         protected override void OnStartup(StartupEventArgs e)
         {
             MainWindow = new MainWindow();
             MainWindow.Show();
+
+            var libraryService = new LibraryService();
+            var result = libraryService.GetApiResponse();
 
             base.OnStartup(e);
         }
