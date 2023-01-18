@@ -13,25 +13,11 @@ namespace OpenLibrary.Services
 {
     public class LibraryService : ILibraryService
     {
+        private static readonly HttpClient Client = new HttpClient();
+
         private async Task<string> GetApiResponse(string connectionString)
         {
-            var client = new HttpClient();
-           
-            string response = client.GetStringAsync(connectionString).Result;
-
-            //Console.WriteLine(response);
-            //var doc = JsonDocument.Parse(response);
-            //string root = doc.RootElement.GetProperty("docs").ToString();
-            //Book books = JsonConvert.DeserializeObject<Book>(root);
-            //BooksList books = JsonConvert.DeserializeObject<BooksList>(response);
-            BooksList booksList = JsonSerializer.Deserialize<BooksList>(response);
-
-            foreach (var book in booksList.docs)
-            {
-                var tempBook = new Book { title = book.title, author_name = book.author_name };
-                var bookModel = new BookViewModel(tempBook);
-                //searchLibrary.Books.Add(bookModel);
-            }
+            string response = Client.GetStringAsync(connectionString).Result;
 
             return response;
         }

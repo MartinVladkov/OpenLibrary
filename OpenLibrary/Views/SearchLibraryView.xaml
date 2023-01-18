@@ -6,10 +6,10 @@
              xmlns:local="clr-namespace:OpenLibrary.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Grid.IsSharedSizeScope="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -22,35 +22,12 @@
             <Button Grid.Column="1" Margin="10 10 5 5" Content="Search" Command="{Binding SearchCommand}"/>
         </Grid>
         <Grid Grid.Row="1">
-                <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="20">
+            <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="20">
                 <TextBlock Text="Search By:" Margin="0 0 25 0"/>
                 <RadioButton Width="150" Content="Title" Name="cbIndia" IsChecked="{Binding Path=SearchByTitle, Mode=TwoWay}"></RadioButton>
                 <RadioButton Width="150" Content="Author" Name="cbUSA" IsChecked="{Binding Path=SearchByAuthor, Mode=TwoWay}"></RadioButton>
             </StackPanel>
         </Grid>
-        
-        <!--<ListView Grid.Row="2" Margin="0 55 0 0" ItemsSource="{Binding Books}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Author">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Author}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-
-                    <GridViewColumn Header="Title">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Title}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>-->
-
         <DataGrid Grid.Row="2" Name="dgUsers" Margin="0 55 0 0" AutoGenerateColumns="False" ItemsSource="{Binding Books}" DataGrid.GridLinesVisibility="None" FontSize="15">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Author" Binding="{Binding Author}" />
