@@ -18,11 +18,11 @@ namespace OpenLibrary.Models
             }
         }
 
-        public List<string> isbn;
+        public List<string> isbn { get; set; }
 
         public string title { get; set; }
 
-        public List<string> author_name { get; set; }
+        public List<string> author_name { get; set; } = new List<string>();
 
         public int number_of_pages_median { get; set; }
 

@@ -29,7 +29,7 @@
             </StackPanel>
         </Grid>
         
-        <ListView Grid.Row="2" Margin="0 55 0 0" ItemsSource="{Binding Books}">
+        <!--<ListView Grid.Row="2" Margin="0 55 0 0" ItemsSource="{Binding Books}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Author">
@@ -40,7 +40,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
 
-                    <GridViewColumn Header="Title">  
+                    <GridViewColumn Header="Title">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Title}"/>
@@ -49,6 +49,47 @@
                     </GridViewColumn>
                 </GridView>
             </ListView.View>
-        </ListView>
+        </ListView>-->
+
+        <DataGrid Grid.Row="2" Name="dgUsers" Margin="0 55 0 0" AutoGenerateColumns="False" ItemsSource="{Binding Books}" DataGrid.GridLinesVisibility="None" FontSize="15">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Author" Binding="{Binding Author}" />
+                <DataGridTextColumn Header="Title" Binding="{Binding Title}" />
+            </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <DockPanel Background="GhostWhite">
+                        <Image DockPanel.Dock="Left" Source="{Binding Cover}" Height="500" Margin="10" />
+                        <Grid Margin="0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            
+                            <TextBlock Text="ISBN: " FontWeight="Bold" Margin="5 5 5 5"/>
+                            <TextBlock Text="{Binding Isbn}" Grid.Column="1" Margin="5 5 5 5"/>
+                            <TextBlock Text="Title: " FontWeight="Bold" Grid.Row="1" Margin="5 5 5 5"/>
+                            <TextBlock Text="{Binding Title}" Grid.Column="1" Grid.Row="1" Margin="5 5 5 5"/>
+                            <TextBlock Text="Author: " FontWeight="Bold" Grid.Row="2" Margin="5 5 5 5"/>
+                            <TextBlock Text="{Binding Author}" Grid.Column="1" Grid.Row="2" Margin="5 5 5 5"/>
+                            <TextBlock Text="Publish Year: " FontWeight="Bold" Grid.Row="3" Margin="5 5 5 5"/>
+                            <TextBlock Text="{Binding PublishYear}" Grid.Column="1" Grid.Row="3" Margin="5 5 5 5"/>
+                            <TextBlock Text="Number of pages: " FontWeight="Bold" Grid.Row="4" Margin="5 5 5 5"/>
+                            <TextBlock Text="{Binding NumberOfPages}" Grid.Column="1" Grid.Row="4" Margin="5 5 5 5"/>
+
+                        </Grid>
+                    </DockPanel>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+        </DataGrid>
+        
+        
     </Grid>
 </UserControl>

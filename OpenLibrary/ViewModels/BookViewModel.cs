@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OpenLibrary.ViewModels
 {
-    public class BookListViewModel : ViewModelBase
+    public class BookViewModel : ViewModelBase
     {
         private readonly Book book;
 
@@ -15,7 +15,15 @@ namespace OpenLibrary.ViewModels
 
         public string? Author => book.author_name?.FirstOrDefault();
 
-        public BookListViewModel(Book book)
+        public string Isbn => book.isbn?.FirstOrDefault();
+
+        public int NumberOfPages => book.number_of_pages_median;
+
+        public int PublishYear => book.first_publish_year;
+
+        public string Cover => "https://covers.openlibrary.org/b/id/" + book.cover_i.ToString() + "-M.jpg";
+
+        public BookViewModel(Book book)
         {
                 this.book = book;
         }

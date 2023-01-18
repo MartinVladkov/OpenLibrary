@@ -29,7 +29,7 @@ namespace OpenLibrary.Services
             foreach (var book in booksList.docs)
             {
                 var tempBook = new Book { title = book.title, author_name = book.author_name };
-                var bookModel = new BookListViewModel(tempBook);
+                var bookModel = new BookViewModel(tempBook);
                 //searchLibrary.Books.Add(bookModel);
             }
 
@@ -60,10 +60,12 @@ namespace OpenLibrary.Services
 
             foreach (var book in booksList.docs)
             {
-                var tempBook = new Book { title = book.title, author_name = book.author_name };
-                var bookModel = new BookListViewModel(tempBook);
+                //var tempBook = new Book { title = book.title, author_name = book.author_name };
+                var bookModel = new BookViewModel(book);
                 searchLibrary.Books.Add(bookModel);
             }
+
+            var a = 0;
         }
     }
 }

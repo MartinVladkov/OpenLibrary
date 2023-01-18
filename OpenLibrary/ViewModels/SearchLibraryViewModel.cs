@@ -14,22 +14,18 @@ namespace OpenLibrary.ViewModels
 {
     public class SearchLibraryViewModel : ViewModelBase
     {
-        private readonly ILibraryService libraryService;
-
-        private readonly ObservableCollection<BookListViewModel> books = new ObservableCollection<BookListViewModel>();
-
         private string searchTerm;
-        public string SearchTerm 
+        public string SearchTerm
         {
-            get { return searchTerm; } 
-            set 
-            { 
-                searchTerm = value; 
-                OnPropertyChanged(nameof(SearchTerm)); 
+            get { return searchTerm; }
+            set
+            {
+                searchTerm = value;
+                OnPropertyChanged(nameof(SearchTerm));
             }
         }
 
-        private bool searchByTitle = true ;
+        private bool searchByTitle = true;
         public bool SearchByTitle
         {
             get { return searchByTitle; }
@@ -51,7 +47,11 @@ namespace OpenLibrary.ViewModels
             }
         }
 
-        public ObservableCollection<BookListViewModel> Books => books;
+        private readonly ILibraryService libraryService;
+
+        private readonly ObservableCollection<BookViewModel> books = new ObservableCollection<BookViewModel>();
+
+        public ObservableCollection<BookViewModel> Books => books;
 
         public ICommand SearchCommand { get; }
 
