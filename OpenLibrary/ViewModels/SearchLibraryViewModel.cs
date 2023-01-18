@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace OpenLibrary.ViewModels
@@ -21,7 +22,33 @@ namespace OpenLibrary.ViewModels
         public string SearchTerm 
         {
             get { return searchTerm; } 
-            set { searchTerm = value; OnPropertyChanged(nameof(SearchTerm)); }
+            set 
+            { 
+                searchTerm = value; 
+                OnPropertyChanged(nameof(SearchTerm)); 
+            }
+        }
+
+        private bool searchByTitle = true ;
+        public bool SearchByTitle
+        {
+            get { return searchByTitle; }
+            set
+            {
+                searchByTitle = value;
+                OnPropertyChanged(nameof(SearchByTitle));
+            }
+        }
+
+        private bool searchByAuthor;
+        public bool SearchByAuthor
+        {
+            get { return searchByAuthor; }
+            set
+            {
+                searchByAuthor = value;
+                OnPropertyChanged(nameof(SearchByAuthor));
+            }
         }
 
         public ObservableCollection<BookListViewModel> Books => books;
@@ -32,28 +59,7 @@ namespace OpenLibrary.ViewModels
         {
             this.libraryService = libraryService;
 
-            //var booksList = CallService().Result;
-
-            //foreach (var book in booksList.docs)
-            //{
-            //    var tempBook = new Book { title = book.title, author_name = book.author_name };
-            //    var bookModel = new BookListViewModel(tempBook);
-            //    books.Add(bookModel);
-            //}
-            var a = 0;
-
             SearchCommand = new SearchCommand(this, libraryService);
-
         }
-
-     
-        //public async Task<BooksList> CallService()
-        //{
-        //    var booksList = await libraryService.GetApiResponse();
-
-        //    return booksList;
-        //}
-        
-        //pri kommanda (search button) vikame getApiResponse sus search query-to i populvame spisuka sus vurnatiq response
     }
 }

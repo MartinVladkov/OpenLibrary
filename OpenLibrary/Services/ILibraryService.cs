@@ -10,6 +10,6 @@ namespace OpenLibrary.Services
 {
     public interface ILibraryService
     {
-        void GetApiResponse(SearchLibraryViewModel searchLibrary);
+        public void SearchBook(SearchLibraryViewModel searchLibrary);
     }
 }

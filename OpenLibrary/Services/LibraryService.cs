@@ -13,11 +13,8 @@ namespace OpenLibrary.Services
 {
     public class LibraryService : ILibraryService
     {
-        public async void GetApiResponse(SearchLibraryViewModel searchLibrary)
+        private async Task<string> GetApiResponse(string connectionString)
         {
-            var searchTerm = searchLibrary.SearchTerm.Replace(" ", "+");
-
-            var connectionString = "http://openlibrary.org/search.json?title=" + searchTerm; //the+lord+of+the+rings&page=1";
             var client = new HttpClient();
            
             string response = client.GetStringAsync(connectionString).Result;
@@ -33,10 +30,40 @@ namespace OpenLibrary.Services
             {
                 var tempBook = new Book { title = book.title, author_name = book.author_name };
                 var bookModel = new BookListViewModel(tempBook);
-                searchLibrary.Books.Add(bookModel);
+                //searchLibrary.Books.Add(bookModel);
             }
 
-            //return books;
+            return response;
+        }
+
+        public void SearchBook(SearchLibraryViewModel searchLibrary)
+        {
+            var query = searchLibrary.SearchTerm.Replace(" ", "+");
+
+            string connectionString = "";
+            string baseUrl = "";
+
+            if (searchLibrary.SearchByAuthor == true)
+            {
+                baseUrl = "http://openlibrary.org/search.json?author=";
+            }
+            else
+            {
+                baseUrl = "http://openlibrary.org/search.json?title=";
+            }
+
+            connectionString = baseUrl + query;
+
+            var result = GetApiResponse(connectionString).Result;
+
+            BooksList booksList = JsonSerializer.Deserialize<BooksList>(result);
+
+            foreach (var book in booksList.docs)
+            {
+                var tempBook = new Book { title = book.title, author_name = book.author_name };
+                var bookModel = new BookListViewModel(tempBook);
+                searchLibrary.Books.Add(bookModel);
+            }
         }
     }
 }

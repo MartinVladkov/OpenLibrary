@@ -22,7 +22,8 @@ namespace OpenLibrary.Commands
 
         public override void Execute(object? parameter)
         {
-            libraryService.GetApiResponse(searchLibrary);
+            searchLibrary.Books.Clear();
+            libraryService.SearchBook(searchLibrary);
         }
     }
 }
