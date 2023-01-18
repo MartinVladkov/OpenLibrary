@@ -13,7 +13,7 @@ namespace OpenLibrary.ViewModels
 
         public string Title => book.title;
 
-        public string Author => book.author_name.FirstOrDefault();
+        public string? Author => book.author_name.FirstOrDefault();
 
         public BookListViewModel(Book book)
         {

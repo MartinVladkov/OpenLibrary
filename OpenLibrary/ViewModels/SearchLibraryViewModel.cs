@@ -1,4 +1,5 @@
-﻿using OpenLibrary.Models;
+﻿using OpenLibrary.Commands;
+using OpenLibrary.Models;
 using OpenLibrary.Services;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,14 @@ namespace OpenLibrary.ViewModels
 
         private readonly ObservableCollection<BookListViewModel> books = new ObservableCollection<BookListViewModel>();
 
-        public IEnumerable<BookListViewModel> Books => books;
+        private string searchTerm;
+        public string SearchTerm 
+        {
+            get { return searchTerm; } 
+            set { searchTerm = value; OnPropertyChanged(nameof(SearchTerm)); }
+        }
+
+        public ObservableCollection<BookListViewModel> Books => books;
 
         public ICommand SearchCommand { get; }
 
@@ -24,24 +32,27 @@ namespace OpenLibrary.ViewModels
         {
             this.libraryService = libraryService;
 
-            var booksList = CallService().Result;
+            //var booksList = CallService().Result;
 
-            foreach (var book in booksList.docs)
-            {
-                var tempBook = new Book { title = book.title, author_name = book.author_name };
-                var bookModel = new BookListViewModel(tempBook);
-                books.Add(bookModel);
-            }
+            //foreach (var book in booksList.docs)
+            //{
+            //    var tempBook = new Book { title = book.title, author_name = book.author_name };
+            //    var bookModel = new BookListViewModel(tempBook);
+            //    books.Add(bookModel);
+            //}
             var a = 0;
 
+            SearchCommand = new SearchCommand(this, libraryService);
+
         }
 
-        public async Task<BooksList> CallService()
-        {
-            var booksList = await libraryService.GetApiResponse();
+     
+        //public async Task<BooksList> CallService()
+        //{
+        //    var booksList = await libraryService.GetApiResponse();
 
-            return booksList;
-        }
+        //    return booksList;
+        //}
         
         //pri kommanda (search button) vikame getApiResponse sus search query-to i populvame spisuka sus vurnatiq response
     }

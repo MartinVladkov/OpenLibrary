@@ -16,7 +16,7 @@ namespace OpenLibrary.ViewModels
         public MainViewModel(ILibraryService libraryService)
         {
             this.libraryService = libraryService;
-            CurrentViewModel = new SearchLibraryViewModel(libraryService);
+            CurrentViewModel = new SearchLibraryViewModel(this.libraryService);
         }
     }
 }

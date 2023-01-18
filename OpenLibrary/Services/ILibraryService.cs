@@ -1,4 +1,5 @@
 ﻿using OpenLibrary.Models;
+using OpenLibrary.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace OpenLibrary.Services
 {
     public interface ILibraryService
     {
-        Task<BooksList> GetApiResponse();
+        void GetApiResponse(SearchLibraryViewModel searchLibrary);
     }
 }

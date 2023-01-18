@@ -7,14 +7,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using OpenLibrary.ViewModels;
 
 namespace OpenLibrary.Services
 {
     public class LibraryService : ILibraryService
     {
-        public async Task<BooksList> GetApiResponse()
+        public async void GetApiResponse(SearchLibraryViewModel searchLibrary)
         {
-            var connectionString = "http://openlibrary.org/search.json?title=the+lord+of+the+rings&page=1";
+            var searchTerm = searchLibrary.SearchTerm.Replace(" ", "+");
+
+            var connectionString = "http://openlibrary.org/search.json?title=" + searchTerm; //the+lord+of+the+rings&page=1";
             var client = new HttpClient();
            
             string response = client.GetStringAsync(connectionString).Result;
@@ -24,9 +27,16 @@ namespace OpenLibrary.Services
             //string root = doc.RootElement.GetProperty("docs").ToString();
             //Book books = JsonConvert.DeserializeObject<Book>(root);
             //BooksList books = JsonConvert.DeserializeObject<BooksList>(response);
-            BooksList books = JsonSerializer.Deserialize<BooksList>(response);
+            BooksList booksList = JsonSerializer.Deserialize<BooksList>(response);
 
-            return books;
+            foreach (var book in booksList.docs)
+            {
+                var tempBook = new Book { title = book.title, author_name = book.author_name };
+                var bookModel = new BookListViewModel(tempBook);
+                searchLibrary.Books.Add(bookModel);
+            }
+
+            //return books;
         }
     }
 }

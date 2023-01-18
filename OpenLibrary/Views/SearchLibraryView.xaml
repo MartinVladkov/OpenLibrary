@@ -17,9 +17,10 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            
-            <TextBlock Grid.Column="0" Text="SearchBox" FontSize="20"/>
+
+            <TextBox Grid.Column="0" Text="{Binding SearchTerm, UpdateSourceTrigger=PropertyChanged}" FontSize="20"/>
             <Button Grid.Column="1" Margin="10 0 0 0" Content="Search" Command="{Binding SearchCommand}"/>
+    
         </Grid>
         <ListView Grid.Row="1" Margin="0 25 0 0" ItemsSource="{Binding Books}">
             <ListView.View>
