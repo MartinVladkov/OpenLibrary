@@ -1,5 +1,7 @@
 ﻿using OpenLibrary.Services;
 using OpenLibrary.ViewModels;
+using System;
+using System.Windows;
 
 namespace OpenLibrary.Commands
 {
@@ -17,13 +19,20 @@ namespace OpenLibrary.Commands
 
         public override void Execute(object? parameter)
         {
-            searchLibrary.Books.Clear();
-            var result = libraryService.SearchBook(searchLibrary.SearchTerm, searchLibrary.SearchByTitle, searchLibrary.SearchByAuthor);
-
-            foreach (var book in result)
+            if (string.IsNullOrWhiteSpace(searchLibrary.SearchTerm))
             {
-                var bookModel = new BookViewModel(book);
-                searchLibrary.Books.Add(bookModel);
+                MessageBox.Show("Searchbar cannot be empty.");
+            }
+            else
+            {
+                searchLibrary.Books.Clear();
+                var result = libraryService.SearchBook(searchLibrary.SearchTerm, searchLibrary.SearchByTitle, searchLibrary.SearchByAuthor);
+
+                foreach (var book in result)
+                {
+                    var bookModel = new BookViewModel(book);
+                    searchLibrary.Books.Add(bookModel);
+                }
             }
         }
     }

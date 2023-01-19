@@ -1,5 +1,6 @@
 ﻿using OpenLibrary.Commands;
 using OpenLibrary.Services;
+using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -12,8 +13,14 @@ namespace OpenLibrary.ViewModels
         {
             get { return searchTerm; }
             set
-            {
-                searchTerm = value; //proverka za prazen string
+            { 
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    searchTerm = value;
+                    throw new ArgumentException("Searchbar cannot be empty.");
+                }
+               
+                searchTerm = value;
                 OnPropertyChanged(nameof(SearchTerm));
             }
         }
