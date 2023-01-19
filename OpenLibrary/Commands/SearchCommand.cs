@@ -1,4 +1,5 @@
-﻿using OpenLibrary.Services;
+﻿using NLog;
+using OpenLibrary.Services;
 using OpenLibrary.ViewModels;
 using System;
 using System.Windows;
@@ -11,6 +12,8 @@ namespace OpenLibrary.Commands
 
         private readonly ILibraryService libraryService;
 
+        Logger log = LogManager.GetCurrentClassLogger();
+
         public SearchCommand(SearchLibraryViewModel searchLibrary, ILibraryService libraryService)
         {
             this.searchLibrary = searchLibrary;
@@ -22,6 +25,7 @@ namespace OpenLibrary.Commands
             if (string.IsNullOrWhiteSpace(searchLibrary.SearchTerm))
             {
                 MessageBox.Show("Searchbar cannot be empty.");
+                log.Error(new Exception(), "Searchbar cannot be empty.");
             }
             else
             {
