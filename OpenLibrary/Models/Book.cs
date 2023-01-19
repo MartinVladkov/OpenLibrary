@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace OpenLibrary.Models
@@ -10,6 +6,7 @@ namespace OpenLibrary.Models
     public class Book : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
         private void OnPropertyChanged(string propertyName)
         {
             if(PropertyChanged != null)
@@ -18,7 +15,7 @@ namespace OpenLibrary.Models
             }
         }
 
-        public List<string> isbn { get; set; }
+        public List<string> isbn { get; set; } = new List<string>();
 
         public string title { get; set; }
 
@@ -28,6 +25,6 @@ namespace OpenLibrary.Models
 
         public int first_publish_year { get; set; }
 
-        public int cover_i { get; set; } //find cover here: https://covers.openlibrary.org/b/$key/$value-$size.jpg exmpl: https://covers.openlibrary.org/b/isbn/0385472579-S.jpg
+        public int cover_i { get; set; } 
     }
 }

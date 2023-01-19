@@ -1,13 +1,8 @@
 ﻿using OpenLibrary.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
-using System.Text.Json.Serialization;
-using OpenLibrary.ViewModels;
 
 namespace OpenLibrary.Services
 {
@@ -22,14 +17,12 @@ namespace OpenLibrary.Services
             return response;
         }
 
-        public void SearchBook(SearchLibraryViewModel searchLibrary)
+        public List<Book> SearchBook(string SearchTerm, bool SearchByTitle, bool SearchByAuthor) 
         {
-            var query = searchLibrary.SearchTerm.Replace(" ", "+");
-
             string connectionString = "";
             string baseUrl = "";
 
-            if (searchLibrary.SearchByAuthor == true)
+            if (SearchByAuthor == true)
             {
                 baseUrl = "http://openlibrary.org/search.json?author=";
             }
@@ -38,19 +31,13 @@ namespace OpenLibrary.Services
                 baseUrl = "http://openlibrary.org/search.json?title=";
             }
 
-            connectionString = baseUrl + query;
+            connectionString = baseUrl + SearchTerm;
 
             var result = GetApiResponse(connectionString).Result;
 
             BooksList booksList = JsonSerializer.Deserialize<BooksList>(result);
 
-            foreach (var book in booksList.docs)
-            {
-                var bookModel = new BookViewModel(book);
-                searchLibrary.Books.Add(bookModel);
-            }
-
-            var a = 0;
+            return booksList.docs;
         }
     }
 }
