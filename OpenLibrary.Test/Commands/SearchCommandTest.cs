@@ -10,7 +10,7 @@ namespace OpenLibrary.Test.Commands
         [Theory]
         [InlineData("Book Title", true, false)]
         [InlineData("Author", false, true)]
-        public void SearchCommandShouldFillBooksCollection(string SearchTerm, bool SearchByTitle, bool SearchByAuthor)
+        public void SearchCommandFillsBooksCollection(string SearchTerm, bool SearchByTitle, bool SearchByAuthor)
         {
             //Arrange
             var libraryService = LibraryServiceMock.Instance;
@@ -28,7 +28,6 @@ namespace OpenLibrary.Test.Commands
             //Assert
             Assert.NotNull(searchLibrary.Books);
             Assert.Equal(2, searchLibrary.Books.Count);
-
         }
     }
 }
