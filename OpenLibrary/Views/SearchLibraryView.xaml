@@ -24,42 +24,42 @@
         <Grid Grid.Row="1">
             <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="20">
                 <TextBlock Text="Search By:" Margin="0 0 25 0"/>
-                <RadioButton Width="150" Content="Title" Name="cbIndia" IsChecked="{Binding Path=SearchByTitle, Mode=TwoWay}"></RadioButton>
-                <RadioButton Width="150" Content="Author" Name="cbUSA" IsChecked="{Binding Path=SearchByAuthor, Mode=TwoWay}"></RadioButton>
+                <RadioButton Width="100" Content="Title" Name="cbIndia" IsChecked="{Binding Path=SearchByTitle, Mode=TwoWay}"></RadioButton>
+                <RadioButton Width="100" Content="Author" Name="cbUSA" IsChecked="{Binding Path=SearchByAuthor, Mode=TwoWay}"></RadioButton>
             </StackPanel>
         </Grid>
         <DataGrid Grid.Row="2" Name="dgUsers" Margin="0 55 0 0" AutoGenerateColumns="False" ItemsSource="{Binding Books}" DataGrid.GridLinesVisibility="None" FontSize="15">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Author" Binding="{Binding Author}" />
-                <DataGridTextColumn Header="Title" Binding="{Binding Title}" />
+                <DataGridTextColumn Header="Author" Width="*" Binding="{Binding Author, Mode=OneWay}" />
+                <DataGridTextColumn Header="Title" Width="*"  Binding="{Binding Title, Mode=OneWay}" />
             </DataGrid.Columns>
             <DataGrid.RowDetailsTemplate>
                 <DataTemplate>
                     <DockPanel Background="GhostWhite">
-                        <Image DockPanel.Dock="Left" Source="{Binding Cover}" Height="500" Margin="10" />
+                        <Image DockPanel.Dock="Left" Source="{Binding Cover, Mode=OneWay}" MinHeight="120" Margin="10" />
                         <Grid Margin="0,10">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             
-                            <TextBlock Text="ISBN: " FontWeight="Bold" Margin="5 5 5 5"/>
-                            <TextBlock Text="{Binding Isbn}" Grid.Column="1" Margin="5 5 5 5"/>
+                            <TextBlock Text="ISBN: " FontWeight="Bold" Margin="5 5 5 5" />
+                            <TextBlock Text="{Binding Isbn, Mode=OneWay}" Grid.Column="1" Margin="5 5 5 5"/>
                             <TextBlock Text="Title: " FontWeight="Bold" Grid.Row="1" Margin="5 5 5 5"/>
-                            <TextBlock Text="{Binding Title}" Grid.Column="1" Grid.Row="1" Margin="5 5 5 5"/>
+                            <TextBlock Text="{Binding Title, Mode=OneWay}" Grid.Column="1" Grid.Row="1" Margin="5 5 5 5"/>
                             <TextBlock Text="Author: " FontWeight="Bold" Grid.Row="2" Margin="5 5 5 5"/>
-                            <TextBlock Text="{Binding Author}" Grid.Column="1" Grid.Row="2" Margin="5 5 5 5"/>
+                            <TextBlock Text="{Binding Author, Mode=OneWay}" Grid.Column="1" Grid.Row="2" Margin="5 5 5 5"/>
                             <TextBlock Text="Publish Year: " FontWeight="Bold" Grid.Row="3" Margin="5 5 5 5"/>
-                            <TextBlock Text="{Binding PublishYear}" Grid.Column="1" Grid.Row="3" Margin="5 5 5 5"/>
+                            <TextBlock Text="{Binding PublishYear, Mode=OneWay}" Grid.Column="1" Grid.Row="3" Margin="5 5 5 5"/>
                             <TextBlock Text="Number of pages: " FontWeight="Bold" Grid.Row="4" Margin="5 5 5 5"/>
-                            <TextBlock Text="{Binding NumberOfPages}" Grid.Column="1" Grid.Row="4" Margin="5 5 5 5"/>
+                            <TextBlock Text="{Binding NumberOfPages, Mode=OneWay}" Grid.Column="1" Grid.Row="4" Margin="5 5 5 5"/>
 
                         </Grid>
                     </DockPanel>

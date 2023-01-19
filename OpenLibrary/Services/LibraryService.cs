@@ -46,7 +46,6 @@ namespace OpenLibrary.Services
 
             foreach (var book in booksList.docs)
             {
-                //var tempBook = new Book { title = book.title, author_name = book.author_name };
                 var bookModel = new BookViewModel(book);
                 searchLibrary.Books.Add(bookModel);
             }
