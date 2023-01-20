@@ -10,6 +10,6 @@ namespace OpenLibrary.Services
 {
     public interface ILibraryService
     {
-        public List<Book> SearchBook(string SearchTerm, bool SearchByTitle, bool SearchByAuthor);
+        public Task<List<Book>> SearchBook(string SearchTerm, bool SearchByTitle, bool SearchByAuthor);
     }
 }

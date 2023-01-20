@@ -2,6 +2,7 @@
 using OpenLibrary.Models;
 using OpenLibrary.Services;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace OpenLibrary.Test.Mocks
@@ -17,7 +18,7 @@ namespace OpenLibrary.Test.Mocks
                 //SearchBook()
                 libraryServiceMock
                     .Setup(a => a.SearchBook("Book Title", true, false))
-                    .Returns(new List<Book>
+                    .ReturnsAsync(new List<Book>
                     {
                         new Book
                         {
@@ -43,7 +44,7 @@ namespace OpenLibrary.Test.Mocks
 
                 libraryServiceMock
                     .Setup(a => a.SearchBook("Author", false, true))
-                    .Returns(new List<Book>
+                    .ReturnsAsync(new List<Book>
                     {
                             new Book
                             {

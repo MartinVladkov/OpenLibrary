@@ -20,8 +20,8 @@ namespace OpenLibrary.Test.Serivces
 
             //Assert
             Assert.NotNull(result);
-            Assert.IsType<List<Book>>(result);
-            Assert.Equal(100, result.Count);
+            Assert.IsType<List<Book>>(result.Result);
+            Assert.Equal(100, result.Result.Count);
         }
     }
 }

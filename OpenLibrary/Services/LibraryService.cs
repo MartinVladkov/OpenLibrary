@@ -17,12 +17,12 @@ namespace OpenLibrary.Services
 
         private async Task<string> GetApiResponse(string connectionString)
         {
-            string response = Client.GetStringAsync(connectionString).Result;
+            string response = await Client.GetStringAsync(connectionString);
 
             return response;
         }
 
-        public List<Book> SearchBook(string SearchTerm, bool SearchByTitle, bool SearchByAuthor) 
+        public async Task<List<Book>> SearchBook(string SearchTerm, bool SearchByTitle, bool SearchByAuthor) 
         {
             string connectionString = "";
             string baseUrl = "";
@@ -38,7 +38,7 @@ namespace OpenLibrary.Services
 
             connectionString = baseUrl + SearchTerm;
 
-            var result = GetApiResponse(connectionString).Result;
+            var result = await GetApiResponse(connectionString);
 
             if (result == null)
             {

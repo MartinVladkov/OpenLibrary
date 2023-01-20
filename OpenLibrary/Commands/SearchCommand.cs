@@ -20,7 +20,7 @@ namespace OpenLibrary.Commands
             this.libraryService = libraryService;   
         }
 
-        public override void Execute(object? parameter)
+        public async override void Execute(object? parameter)
         {
             if (string.IsNullOrWhiteSpace(searchLibrary.SearchTerm))
             {
@@ -30,7 +30,7 @@ namespace OpenLibrary.Commands
             else
             {
                 searchLibrary.Books.Clear();
-                var result = libraryService.SearchBook(searchLibrary.SearchTerm, searchLibrary.SearchByTitle, searchLibrary.SearchByAuthor);
+                var result = await libraryService.SearchBook(searchLibrary.SearchTerm, searchLibrary.SearchByTitle, searchLibrary.SearchByAuthor);
 
                 foreach (var book in result)
                 {
